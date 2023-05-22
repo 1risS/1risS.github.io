@@ -1,121 +1,130 @@
-import * as THREE from 'three';
+import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
-import Stats from 'three/addons/libs/stats.module.js';
+// Canvas
+const canvas = document.querySelector('canvas.webgl')
 
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+// Scene
+const scene = new THREE.Scene()
 
-let camera, scene, renderer, stats;
+// Model
+const loader = new GLTFLoader();
 
-const clock = new THREE.Clock();
+let mixer = null
 
-let mixer;
 
-init();
-animate();
+loader.load( "models/scene.gltf", function ( gltf ) {
 
-function init() {
+    const keyboard = gltf.scene;
 
-    const container = document.createElement( 'div' );
-    document.body.appendChild( container );
+    // const box = new THREE.BoxHelper( keyboard, 0xffff00 );
+    // scene.add( box );
+    const axesHelper = new THREE.AxesHelper(2)
+    scene.add(axesHelper)
 
-    camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-    camera.position.set( 100, 200, 300 );
+        keyboard.rotateX(Math.PI);
+    // keyboard.rotateY(Math.PI);
+        keyboard.rotateZ(Math.PI);
+    keyboard.position.set(0,0,0);
+    keyboard.scale.set(1, 1, 1);
+    keyboard.axesHelper;
 
-    scene = new THREE.Scene();
-    scene.background = new THREE.Color( 0xa0a0a0 );
-    scene.fog = new THREE.Fog( 0xa0a0a0, 200, 1000 );
+    scene.add( keyboard );
 
-    const hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 1.5 );
-    hemiLight.position.set( 0, 200, 0 );
-    scene.add( hemiLight );
+} );
 
-    const dirLight = new THREE.DirectionalLight( 0xffffff, 1.5 );
-    dirLight.position.set( 0, 200, 100 );
-    dirLight.castShadow = true;
-    dirLight.shadow.camera.top = 180;
-    dirLight.shadow.camera.bottom = - 100;
-    dirLight.shadow.camera.left = - 120;
-    dirLight.shadow.camera.right = 120;
-    scene.add( dirLight );
+/**
+ * Lights
+ */
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
+scene.add(ambientLight)
 
-    // scene.add( new THREE.CameraHelper( dirLight.shadow.camera ) );
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6)
+directionalLight.castShadow = true
+directionalLight.shadow.mapSize.set(1024, 1024)
+directionalLight.shadow.camera.far = 15
+directionalLight.shadow.camera.left = - 7
+directionalLight.shadow.camera.top = 7
+directionalLight.shadow.camera.right = 7
+directionalLight.shadow.camera.bottom = - 7
+directionalLight.position.set(- 5, 5, 0)
+scene.add(directionalLight)
 
-    // ground
-    const mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
-    mesh.rotation.x = - Math.PI / 2;
-    mesh.receiveShadow = true;
-    scene.add( mesh );
-
-    const grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
-    grid.material.opacity = 0.2;
-    grid.material.transparent = true;
-    scene.add( grid );
-
-    // model
-    const loader = new FBXLoader();
-
-    loader.load( "../public/models/keyboard.fbx", function ( object ) {
-
-        mixer = new THREE.AnimationMixer( object );
-
-        const action = mixer.clipAction( object.animations[ 0 ] );
-        action.play();
-
-        object.traverse( function ( child ) {
-
-            if ( child.isMesh ) {
-
-                child.castShadow = true;
-                child.receiveShadow = true;
-
-            }
-
-        } );
-
-        scene.add( object );
-
-    } );
-
-    renderer = new THREE.WebGLRenderer( { antialias: true } );
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    renderer.shadowMap.enabled = true;
-    container.appendChild( renderer.domElement );
-
-    const controls = new OrbitControls( camera, renderer.domElement );
-    controls.target.set( 0, 100, 0 );
-    controls.update();
-
-    window.addEventListener( 'resize', onWindowResize );
-
-    // stats
-    stats = new Stats();
-    container.appendChild( stats.dom );
-
+/**
+ * Sizes
+ */
+const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight
 }
 
-function onWindowResize() {
+window.addEventListener('resize', () =>
+{
+    // Update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
 
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
+    // Update camera
+    camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix()
 
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
 
+/**
+ * Camera
+ */
+// Base camera
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+camera.position.set(2, 2, 2)
+scene.add(camera)
+
+// Controls
+const controls = new OrbitControls(camera, canvas)
+controls.target.set(0, 0.75, 0)
+controls.enableDamping = true
+
+/**
+ * Renderer
+ */
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas
+})
+renderer.shadowMap.enabled = true
+renderer.shadowMap.type = THREE.PCFSoftShadowMap
+renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+/**
+ * Animate
+ */
+const clock = new THREE.Clock()
+let previousTime = 0
+
+const tick = () =>
+{
+    const elapsedTime = clock.getElapsedTime()
+    const deltaTime = elapsedTime - previousTime
+    previousTime = elapsedTime
+
+    // Model animation
+    if(mixer)
+    {
+        mixer.update(deltaTime)
+    }
+
+    // Update controls
+    controls.update()
+
+    // Render
+    renderer.render(scene, camera)
+
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick)
 }
 
-//
+tick()
 
-function animate() {
-
-    requestAnimationFrame( animate );
-
-    const delta = clock.getDelta();
-
-    if ( mixer ) mixer.update( delta );
-
-    renderer.render( scene, camera );
-
-    stats.update();
-
-}
