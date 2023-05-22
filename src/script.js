@@ -13,7 +13,6 @@ const loader = new GLTFLoader();
 
 let mixer = null
 
-
 loader.load( "models/scene.gltf", function ( gltf ) {
 
     const keyboard = gltf.scene;
