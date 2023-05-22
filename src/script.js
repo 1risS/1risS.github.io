@@ -22,14 +22,15 @@ loader.load( "models/scene.gltf", function ( gltf ) {
     const axesHelper = new THREE.AxesHelper(2)
     scene.add(axesHelper)
 
-        keyboard.rotateX(Math.PI);
-    // keyboard.rotateY(Math.PI);
-        keyboard.rotateZ(Math.PI);
+     //keyboard.rotateX(Math.PI/2);
+    keyboard.rotateY(-Math.PI/2);
+    keyboard.rotateZ(0);
     keyboard.position.set(0,0,0);
-    keyboard.scale.set(1, 1, 1);
+    keyboard.scale.set(5, 5, 5);
     keyboard.axesHelper;
 
     scene.add( keyboard );
+    camera.lookAt(keyboard.position)
 
 } );
 
@@ -47,7 +48,7 @@ directionalLight.shadow.camera.left = - 7
 directionalLight.shadow.camera.top = 7
 directionalLight.shadow.camera.right = 7
 directionalLight.shadow.camera.bottom = - 7
-directionalLight.position.set(- 5, 5, 0)
+directionalLight.position.set(0,0,3)
 scene.add(directionalLight)
 
 /**
@@ -78,8 +79,28 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.set(2, 2, 2)
+// vista en x 
+// camera.position.set(10, 1, 1)
+
+//top
+    camera.position.set(0, 5, 0)
+//n
+    //camera.position.set(-5, 0, 0.1)
+// s
+    //camera.position.set(5, 0, 0)
+// e 
+    //camera.position.set(0.1, 0, -5)
+//w
+    //camera.position.set(0, 0, 5)
+
 scene.add(camera)
+
+console.log(camera.position)
+
+const helper = new THREE.CameraHelper( camera );
+scene.add( helper );
+
+
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
