@@ -8,10 +8,10 @@ body {
     /* overflow: hidden; */
 }
 
-.hydra {
+/* .hydra {
     width: 100vw;
     height: 100vh;
-}
+} */
 
 .blurryLayer {
     position: fixed;
