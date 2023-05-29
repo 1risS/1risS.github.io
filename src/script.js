@@ -11,6 +11,9 @@ const canvasHydra = document.querySelector('canvas.hydra')
 // Scene
 const scene = new THREE.Scene()
 
+// Background
+
+scene.background = new THREE.Color('rgb(255,255,255)')
 // Model
 
 const draco = new DRACOLoader();
