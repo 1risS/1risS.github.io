@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+}
+
+body {
+    /* overflow: hidden; */
+}
+
+.hydra {
+    width: 100vw;
+    height: 100vh;
+}
+
+.blurryLayer {
+    position: fixed;
+    margin-right: 25%;
+    height: 100vh;
+    filter: blur(10px) ;
+    z-index: 3;
+}
+
+.webgl {
+    z-index: -1;
+}

@@ -1,33 +1,39 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
+
+const canvasHydra = document.querySelector('canvas.hydra')
 
 // Scene
 const scene = new THREE.Scene()
 
 // Model
+
+const draco = new DRACOLoader();
+draco.setDecoderPath('/draco/')
+
 const loader = new GLTFLoader();
+loader.setDRACOLoader(draco)
 
 let mixer = null
 
-loader.load( "models/scene.gltf", function ( gltf ) {
+loader.load( "models/scene_00.gltf", function ( gltf ) {
 
     const keyboard = gltf.scene;
 
-    // const box = new THREE.BoxHelper( keyboard, 0xffff00 );
-    // scene.add( box );
     const axesHelper = new THREE.AxesHelper(2)
-    scene.add(axesHelper)
+    //scene.add(axesHelper)
 
      //keyboard.rotateX(Math.PI/2);
     keyboard.rotateY(-Math.PI/2);
     keyboard.rotateZ(0);
     keyboard.position.set(0,0,0);
     keyboard.scale.set(5, 5, 5);
-    keyboard.axesHelper;
+    //keyboard.axesHelper;
 
     scene.add( keyboard );
     camera.lookAt(keyboard.position)
@@ -98,7 +104,7 @@ scene.add(camera)
 console.log(camera.position)
 
 const helper = new THREE.CameraHelper( camera );
-scene.add( helper );
+// scene.add( helper );
 
 
 
@@ -111,7 +117,8 @@ controls.enableDamping = true
  * Renderer
  */
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+    canvas: canvas,
+    canvasHydra: canvasHydra
 })
 renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
