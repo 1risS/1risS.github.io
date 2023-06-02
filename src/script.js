@@ -13,7 +13,7 @@ const scene = new THREE.Scene()
 
 // Background
 
-scene.background = new THREE.Color('rgb(255,255,255)')
+scene.background = new THREE.Color('rgb(222, 160, 157)')
 // Model
 
 const draco = new DRACOLoader();
@@ -42,6 +42,39 @@ loader.load( "models/scene_00.gltf", function ( gltf ) {
     camera.lookAt(keyboard.position)
 
 } );
+
+/** 
+ * Sprites
+ */
+
+const mapAbout = new THREE.TextureLoader().load( 'sprites/about_04.png' );
+const materialAbout = new THREE.SpriteMaterial( { 
+    map: mapAbout,     
+    alphaTest: 0.5,
+    transparent: true,
+    depthTest: false,
+    depthWrite: false } );
+
+const spriteAbout = new THREE.Sprite( materialAbout );
+spriteAbout.position.set(-0.65,0,-0.55);
+spriteAbout.scale.set(1, 1, 1);
+
+scene.add( spriteAbout );
+
+const mapWork = new THREE.TextureLoader().load( 'sprites/work_01.png' );
+const materialWork = new THREE.SpriteMaterial( { 
+    map: mapWork,     
+    alphaTest: 0.5,
+    transparent: true,
+    depthTest: false,
+    depthWrite: false } );
+
+const spriteWork = new THREE.Sprite( materialWork );
+spriteWork.position.set(-3.1,0,0);
+spriteWork.scale.set(1, 1, 1);
+
+scene.add( spriteWork );
+
 
 /**
  * Lights
@@ -104,8 +137,6 @@ const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 
 
 scene.add(camera)
 
-console.log(camera.position)
-
 const helper = new THREE.CameraHelper( camera );
 // scene.add( helper );
 
@@ -115,6 +146,20 @@ const helper = new THREE.CameraHelper( camera );
 const controls = new OrbitControls(camera, canvas)
 controls.target.set(0, 0.75, 0)
 controls.enableDamping = true
+const date = new Date() 
+
+controls.minDistance = 2.5
+controls.maxDistance = 5
+controls.autoRotate = true
+controls.autoRotateSpeed = 0.2 * Math.sin(date.getTime())
+controls.maxPolarAngle = Math.PI/2;
+controls.minAzimuthAngle = -1; 
+controls.maxAzimuthAngle = 1; 
+
+
+// controls.autoRotateSpeed = ((Math.sin(clock/10000)+2)*-0.1)
+
+
 
 /**
  * Renderer
@@ -133,6 +178,9 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  */
 const clock = new THREE.Clock()
 let previousTime = 0
+
+
+
 
 const tick = () =>
 {
