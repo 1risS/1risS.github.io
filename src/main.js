@@ -1,8 +1,6 @@
 import * as THREE from 'three'
 
 import { addModel, addSprites, addLights, setControls } from './elements.js'
-// Elements for sprite selection
-
 
 let selectedObject;
 let raycaster = new THREE.Raycaster()
