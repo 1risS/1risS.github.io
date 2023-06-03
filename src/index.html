@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iris Saladino</title>
+    <link rel="stylesheet" href="./loader.css">
     <link rel="stylesheet" href="./styles.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
 </head>
+
 <body>
     <!-- <canvas class="hydra" id="myCanvas" ></canvas> -->
     <div class="blurryLayer"></div>
     <canvas class="webgl" id="webgl"></canvas>
-    <script type="module" src="./script.js"></script>
+
+    <div id="loader">
+        <!-- Loading... -->
+        <div class="custom-loader"></div>
+    </div>
+
+    <script type="module" src="./elements.js"></script>
+
+    <script type="module" src="./main.js"></script>
     <script type="module" src="./hydra.js"></script>
     <!-- <script src="https://unpkg.com/hydra-synth"></script> -->
 </body>
+
 </html>

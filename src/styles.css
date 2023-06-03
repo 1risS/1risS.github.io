@@ -15,11 +15,11 @@ body {
 
 .blurryLayer {
     position: fixed;
-    margin:5% 10% 5% 25%;
+    margin: 5% 10% 5% 25%;
     height: 40%;
     width: 40%;
     border-radius: 10px;
-    backdrop-filter: blur(5px) ;
+    backdrop-filter: blur(5px);
     z-index: 3;
     background-color: rgba(234, 213, 175, 0.3);
     display: none
@@ -28,4 +28,24 @@ body {
 .webgl {
     z-index: -1;
     position: absolute;
+}
+
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000cc;
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+#loader.hide {
+    display: none;
 }
