@@ -4,7 +4,7 @@ const isCodeSandbox =
 export default {
   root: 'src/',
   publicDir: '../public/',
-  base: 'https://1riss.github.io/portfolio2023/',
+  base: '/portfolio2023/',
   server: {
     host: true,
     open: !isCodeSandbox // Open if it's not a CodeSandbox
