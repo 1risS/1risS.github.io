@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
           )
           .luma(0.3)
       )
-      .blend(src(o0), [0, 0.5].smooth().fast(0.1))
+      .blend(src(o0), [0, 0.5].smooth().fast(0.5))
       .add(
         shape(2, 0.00001)
           .scale(0.2)

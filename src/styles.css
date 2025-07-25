@@ -141,13 +141,13 @@ body {
   min-height: 100vh;
   padding: 60px 40px;
   background-color: rgba(0, 0, 0, 0.95);
+  text-align: center;
 }
 
 .works-title {
   font-size: 48px;
   font-weight: 600;
   margin-bottom: 60px;
-  text-align: center;
   color: greenyellow;
   white-space: nowrap;
   overflow: hidden;
