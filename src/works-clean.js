@@ -6,7 +6,11 @@ class WorksShowcase {
         id: 'mamba-2024',
         title: 'Escuchar Sonidos Visuales - MAMBA 2024',
         description:
-          'A multimedia participative performance exploring the relationship between organic, electric and algorithmic sound among interactive audiovisual mobile interfaces, presented at the Museum of Modern Art of Buenos Aires. With: Patricia García (flutes and pedals), Eduardo Cabrera (system programming, interface programming, Ableton Live generative set), Enneagrama (TouchDesigner VJ) and me (live coding, interface programming, general idea and production)',
+          'A multimedia participative performance exploring the relationship between organic, electric and algorithmic sound among interactive audiovisual mobile interfaces, presented at the Museum of Modern Art of Buenos Aires.<br></br> Through improvisational processes, we investigated points of contact between diverse sound formats—blending live instruments, generative audio, and field recordings—while inviting the audience to actively participate using their phones. Custom-coded experimental interfaces allowed them to interact with the piece in real time, transforming the space into a collective and evolving audiovisual experience.',
+        participants:
+          'With: <b>Patricia García</b> (flutes and pedals), <b>Eduardo Cabrera</b> (system programming, interface programming, generative electronic set), <b>Enneagrama</b> (VJ) and <b>me</b> (live coding, interface programming, general idea and production)',
+        technologies:
+          '<b>Technologies used </b>: Ableton Live, TouchDesigner, Tidal Cycles, SuperCollider, JavaScript , p5.js, tone.js and Websockets',
         folder: 'mamba-2024',
         assets: [
           'eduiris_04.jpg',
@@ -52,7 +56,11 @@ class WorksShowcase {
         id: 'cck-2024',
         title: 'Vectores Inmanentes - CCK 2024',
         description:
-          'An immersive audiovisual experience presented at the Cultural Center Kirchner, featuring live-coded multichannel sound design and TouchDesigner visuals that respond to sound. This work’s narrative, strongly rooted in Buenos Aires, traces meaning through different scales, inviting the audience to reflect in the small 3D scenes captured in public spaces, located in key points of the city, characterized by iconic biuldings. ',
+          'An immersive audiovisual journey premiered at the Centro Cultural Kirchner, weaving live‑coded multichannel soundscapes with TouchDesigner visuals that dance to the music. <br></br>Rooted in the spirit of Buenos Aires, the narrative unfolds across shifting scales, drawing the audience into intimate 3D vignettes captured at landmark city sites framed by its iconic architecture. <br></br> Check a 360 video <a href="https://www.youtube.com/watch?v=KWOXZk81yv0&t=545s"> here </a>.',
+        participants:
+          'With: <b>munshkr</b> (system prototype, sound live coding), <b>Tolch</b> and <b>Nan</b> (technical artistry), <b>Enneagrama</b> and <b>Milo Cabeza</b> (VJ effects and live operation) and <b>me</b> (general idea, production, sound live coding)',
+        technologies:
+          '<b>Technologies used:</b> TouchDesigner, TidalCycles, SuperCollider, 3D scanning, Drone videography',
         folder: 'cck-2024',
         assets: [
           '17-05-2024 sala inmersiva-Vectores inmanentes-fotos-fede-kaplun-2.JPG',
@@ -78,9 +86,13 @@ class WorksShowcase {
       },
       {
         id: 'inorganico',
-        title: 'inOrgánico',
+        title: 'inOrgánico 2021 - 2022 - 2023',
         description:
-          'A series of audiovisual explorations that blur the boundaries between organic and digital realms, featuring live-coded generative visuals and experimental sound design.',
+          'An audiovisual performance that blends live coding, generative techniques in Ableton Live, and musical instruments to explore the blurred boundaries between organic and inorganic worlds in the Monte Chaqueño (Colonia Benítez, Chaco, Argentina).<br></br>Presented at Festival Spam Arts 2021 (Tecnópolis), MUTEK AR 2022 (Palacio Alsina), and InOrgánico Expandido 2023 (Museo Schulz), the piece features generative visuals coded live from drone footage, infrared and RGB imagery, paired with experimental sound design built from the natural soundscapes of the Monte Chaqueño. <br></br> Check some captures <a href="https://www.youtube.com/watch?v=aTp2YONi3sk"> here </a> and <a href="https://www.youtube.com/watch?v=0j4JAhBwNkc"> here </a>.',
+        participants:
+          'With: <b> Belén Rohde</b> (video and sound captures, electronic generative set, electric piano and bandoneón) and <b>me</b> (concept, production, system programming, sound and visual live coding). Special thanks to <b> Alva Rocha </b> for his drone videos, <b> Martín Rulito Grieco </b> for his Ableton Live generative assistance and <b>munshkr</b> for his technical artistry.',
+        technologies:
+          '<b>Technologies used:</b> Ableton Live, Three.js, TidalCycles, SuperCollider, Kinect cameras, Drone videography, Field recordings.',
         folder: 'inOrganico',
         assets: [
           'DSC_0001.MOV',
@@ -108,6 +120,18 @@ class WorksShowcase {
           'Adobe Express - inorganico_03.mp4',
           'Adobe Express - inorganico_04.mp4'
         ]
+      },
+      {
+        id: 'singular-reproductible',
+        title: 'Singular Reproductible 2023',
+        description:
+          'A live coded video art piece exploring the complex relationship between female representation in media and personal identity. <br></br>Created initially for a videoart cycle at the Centro Cultural de la Embajada de España en Buenos Aires, and later adapted for "Iterations Online 2023" in the Netherlands, this work examines how advertising, entertainment and media have shaped feminine self-perception across generations. <br></br>The piece navigates the conflicted territory between mediated femininity and authentic existence, investigating how media technology (including AI) has further complicated our relationships with body image, ancestry, and environment... ultimately seeking transformation and healing through artistic expression. <br></br>Play v1 below and check the v2 video <a href="https://www.youtube.com/watch?v=9MFkYsVvnnI&t=2s"> here </a>. ',
+        participants:
+          'Solo work by <b>me</b> (concept, production, video editing, sound design)',
+        technologies:
+          '<b>Technologies used:</b> Video, Stable Diffusion AI, hydra, hydra-superdirt, TidalCycles, SuperCollider',
+        folder: 'singular-reproductible',
+        assets: ['singularReproductible.mkv']
       }
     ]
 
@@ -131,6 +155,8 @@ class WorksShowcase {
         <div class="work-header">
           <h3 class="work-title">${work.title}</h3>
           <p class="work-description">${work.description}</p>
+          <p class="work-participants">${work.participants}</p>
+          <p class="work-technologies">${work.technologies}</p>
         </div>
         <div class="work-carousel" id="carousel-${work.id}">
           <div class="carousel-container">
@@ -382,7 +408,7 @@ class WorksShowcase {
   }
 
   isVideo (filename) {
-    const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi']
+    const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv']
     return videoExtensions.some(ext => filename.toLowerCase().endsWith(ext))
   }
 

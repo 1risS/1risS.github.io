@@ -189,6 +189,37 @@ body {
   margin: 0 auto;
 }
 
+.work-participants {
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(173, 255, 47, 0.7);
+  max-width: 800px;
+  margin: 15px auto 0 auto;
+  font-weight: 300;
+}
+
+.work-participants b {
+  color: rgba(173, 255, 47, 0.9);
+  font-weight: 500;
+}
+
+/* New styles for work technologies text */
+.work-technologies {
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(173, 255, 47, 0.6);
+  max-width: 800px;
+  margin: 10px auto 0 auto;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.work-technologies b {
+  color: rgba(173, 255, 47, 0.8);
+  font-weight: 500;
+  font-style: normal;
+}
+
 /* Carousel styles */
 .work-carousel {
   position: relative;
@@ -507,6 +538,14 @@ body {
     font-size: 16px;
   }
 
+  .work-participants {
+    font-size: 12px;
+  }
+
+  .work-technologies {
+    font-size: 12px;
+  }
+
   .work-carousel {
     height: 300px;
   }
@@ -556,6 +595,18 @@ body {
 
   .about-text {
     font-size: 14px;
+  }
+
+  .work-description {
+    font-size: 14px;
+  }
+
+  .work-participants {
+    font-size: 10px;
+  }
+
+  .work-technologies {
+    font-size: 10px;
   }
 
   .video-controls {
