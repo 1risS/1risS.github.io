@@ -631,4 +631,47 @@ document.addEventListener('DOMContentLoaded', function () {
   setTimeout(() => {
     initializePhotoBlurEffect()
   }, 300)
+
+  // Initialize scroll indicator functionality
+  setTimeout(() => {
+    initializeScrollIndicator()
+  }, 400)
+
+  // Scroll indicator functionality
+  function initializeScrollIndicator () {
+    const scrollIndicator = document.querySelector('.scroll-indicator')
+    if (!scrollIndicator) return
+
+    // Make it clickable to scroll to about section
+    scrollIndicator.addEventListener('click', () => {
+      const aboutContainer = document.querySelector('.about-container')
+      if (aboutContainer) {
+        aboutContainer.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    })
+
+    // Fade out on scroll
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY
+      const windowHeight = window.innerHeight
+      const fadeStart = windowHeight * 0.1 // Start fading at 10% of viewport height
+      const fadeEnd = windowHeight * 0.3 // Completely hidden at 30% of viewport height
+
+      if (scrollY <= fadeStart) {
+        scrollIndicator.style.opacity = '0.8'
+        scrollIndicator.style.visibility = 'visible'
+      } else if (scrollY >= fadeEnd) {
+        scrollIndicator.style.opacity = '0'
+        scrollIndicator.style.visibility = 'hidden'
+      } else {
+        const fadeProgress = (scrollY - fadeStart) / (fadeEnd - fadeStart)
+        const opacity = 0.8 * (1 - fadeProgress)
+        scrollIndicator.style.opacity = opacity.toString()
+        scrollIndicator.style.visibility = 'visible'
+      }
+    })
+  }
 })

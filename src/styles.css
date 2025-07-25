@@ -483,6 +483,77 @@ body {
   display: none !important;
 }
 
+/* Custom Scrollbar Styling */
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(173, 255, 47, 0.8) 0%,
+    rgba(173, 255, 47, 0.6) 50%,
+    rgba(173, 255, 47, 0.4) 100%
+  );
+  border-radius: 6px;
+  border: 2px solid rgba(0, 0, 0, 0.9);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(173, 255, 47, 1) 0%,
+    rgba(173, 255, 47, 0.8) 50%,
+    rgba(173, 255, 47, 0.6) 100%
+  );
+  border: 2px solid rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(173, 255, 47, 0.3);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(
+    180deg,
+    rgba(173, 255, 47, 1) 0%,
+    rgba(173, 255, 47, 0.9) 100%
+  );
+  box-shadow: 0 0 15px rgba(173, 255, 47, 0.5);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(173, 255, 47, 0.8) rgba(0, 0, 0, 0.9);
+}
+
+/* Custom scrollbar for specific containers if needed */
+.work-carousel::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.work-carousel::-webkit-scrollbar-thumb {
+  background: rgba(173, 255, 47, 0.6);
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.work-carousel::-webkit-scrollbar-thumb:hover {
+  background: rgba(173, 255, 47, 0.8);
+  box-shadow: 0 0 5px rgba(173, 255, 47, 0.3);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .nombre {
@@ -544,6 +615,23 @@ body {
 
   .work-technologies {
     font-size: 12px;
+  }
+
+  .scroll-indicator {
+    bottom: 30px;
+  }
+
+  .scroll-arrow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .arrow-down {
+    font-size: 18px;
+  }
+
+  .scroll-text {
+    font-size: 11px;
   }
 
   .work-carousel {
@@ -609,6 +697,23 @@ body {
     font-size: 10px;
   }
 
+  .scroll-indicator {
+    bottom: 25px;
+  }
+
+  .scroll-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .arrow-down {
+    font-size: 16px;
+  }
+
+  .scroll-text {
+    font-size: 10px;
+  }
+
   .video-controls {
     bottom: 30px;
     padding: 8px 12px;
@@ -627,5 +732,78 @@ body {
 
   .volume-slider {
     width: 50px;
+  }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+}
+
+.scroll-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(173, 255, 47, 0.6);
+  border-radius: 50%;
+  margin-bottom: 8px;
+  animation: scrollPulse 2s infinite ease-in-out;
+}
+
+.arrow-down {
+  font-size: 20px;
+  color: greenyellow;
+  font-weight: bold;
+  animation: scrollBounce 1.5s infinite ease-in-out;
+}
+
+.scroll-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: rgba(173, 255, 47, 0.8);
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Animations */
+@keyframes scrollPulse {
+  0% {
+    border-color: rgba(173, 255, 47, 0.6);
+    box-shadow: 0 0 0 0 rgba(173, 255, 47, 0.4);
+  }
+  50% {
+    border-color: rgba(173, 255, 47, 0.8);
+    box-shadow: 0 0 0 10px rgba(173, 255, 47, 0);
+  }
+  100% {
+    border-color: rgba(173, 255, 47, 0.6);
+    box-shadow: 0 0 0 0 rgba(173, 255, 47, 0);
+  }
+}
+
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
   }
 }
