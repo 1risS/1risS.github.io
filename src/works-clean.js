@@ -4,7 +4,7 @@ class WorksShowcase {
     this.works = [
       {
         id: 'mamba-2024',
-        title: 'Escuchar Sonidos Visuales - MAMBA 2024',
+        title: 'Participative multimedia concert - MAMBA 2024',
         description:
           'A multimedia participative performance exploring the relationship between organic, electric and algorithmic sound among interactive audiovisual mobile interfaces, presented at the Museum of Modern Art of Buenos Aires.<br></br> Through improvisational processes, we investigated points of contact between diverse sound formats—blending live instruments, generative audio, and field recordings—while inviting the audience to actively participate using their phones. Custom-coded experimental interfaces allowed them to interact with the piece in real time, transforming the space into a collective and evolving audiovisual experience.',
         participants:
