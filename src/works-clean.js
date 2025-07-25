@@ -6,7 +6,7 @@ class WorksShowcase {
         id: 'mamba-2024',
         title: 'Escuchar Sonidos Visuales - MAMBA 2024',
         description:
-          'A multimedia installation exploring the synesthetic relationship between sound and visual patterns, presented at the Museum of Modern Art of Buenos Aires.',
+          'A multimedia participative performance exploring the relationship between organic, electric and algorithmic sound among interactive audiovisual mobile interfaces, presented at the Museum of Modern Art of Buenos Aires. With: Patricia García (flutes and pedals), Eduardo Cabrera (system programming, interface programming, Ableton Live generative set), Enneagrama (TouchDesigner VJ) and me (live coding, interface programming, general idea and production)',
         folder: 'mamba-2024',
         assets: [
           'eduiris_04.jpg',
@@ -52,7 +52,7 @@ class WorksShowcase {
         id: 'cck-2024',
         title: 'Vectores Inmanentes - CCK 2024',
         description:
-          'An immersive audiovisual experience presented at the Cultural Center Kirchner, featuring multichannel sound design and live-coded visuals that respond to audience interaction.',
+          'An immersive audiovisual experience presented at the Cultural Center Kirchner, featuring live-coded multichannel sound design and TouchDesigner visuals that respond to sound. This work’s narrative, strongly rooted in Buenos Aires, traces meaning through different scales, inviting the audience to reflect in the small 3D scenes captured in public spaces, located in key points of the city, characterized by iconic biuldings. ',
         folder: 'cck-2024',
         assets: [
           '17-05-2024 sala inmersiva-Vectores inmanentes-fotos-fede-kaplun-2.JPG',
